@@ -1,0 +1,14 @@
+plugins:
+  rubocop:
+    enabled: true
+    channel: rubocop-0-51
+exclude_patterns:
+- .bundle/
+- bin/
+- config/
+- db/
+- log/
+- public/
+- test/
+- tmp/
+- vendor/
