@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
 
     if @group.save
-      redirect_to (groups_path), notice: '新增成功'
+      redirect_to(groups_path, notice: '新增成功')
     else
       render :new
     end
@@ -27,11 +27,11 @@ class GroupsController < ApplicationController
 
   def update
     @group.update(group_params)
-    redirect_to (groups_path), notice: '更新成功'
+    redirect_to(groups_path, notice: '更新成功')
   end
 
   def destroy
-    redirect_to (groups_path), alert: '刪除成功' if @group.destroy
+    redirect_to(groups_path, alert: '刪除成功') if @group.destroy
   end
 
   private
