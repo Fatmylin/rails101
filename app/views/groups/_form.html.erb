@@ -1,0 +1,13 @@
+  <h3>標題</h3>
+  <%= f.text_field :title, class:'form-control' %>
+  <% @group.errors.full_messages_for(:title).each do |msg| %>
+  <li class="alert-danger" ><%= msg %></li>
+  <% end %>
+  <br>
+  <h3>敘述</h3>
+  <%= f.text_area :description, class:'form-control' %>
+  <% @group.errors.full_messages_for(:description).each do |msg| %>
+  <li class="alert-danger" ><%= msg %></li>
+  <% end %>
+  <br>
+  <%= f.submit "確認", :disable_with => 'Submiting...', class:'btn btn-primary' %>
