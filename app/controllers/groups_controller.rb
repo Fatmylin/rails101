@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:edit, :update, :destroy, :show]
+  before_action :should_have_group, only: [:edit, :update, :destroy, :show]
 
   def index
     @groups = Group.all
@@ -40,7 +40,7 @@ class GroupsController < ApplicationController
     params.require(:group).permit(:title, :description)
   end
 
-  def set_group
+  def should_have_group
     @group = Group.find_by(id: params[:id])
     head(404) if @group.nil?
   end
