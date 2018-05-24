@@ -10,10 +10,10 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new group_params
+    @group = Group.new(group_params)
 
     if @group.save
-      redirect_to groups_path, notice: '新增成功'
+      redirect_to (groups_path), notice: '新增成功'
     else
       render :new
     end
@@ -26,12 +26,12 @@ class GroupsController < ApplicationController
   end
 
   def update
-    @group.update group_params
-    redirect_to groups_path, notice: '更新成功'
+    @group.update(group_params)
+    redirect_to (groups_path), notice: '更新成功'
   end
 
   def destroy
-    redirect_to groups_path, alert: '刪除成功' if @group.destroy
+    redirect_to (groups_path), alert: '刪除成功' if @group.destroy
   end
 
   private
@@ -42,5 +42,6 @@ class GroupsController < ApplicationController
 
   def set_group
     @group = Group.find_by(id: params[:id])
+    head(404) if @group.nil?
   end
 end
