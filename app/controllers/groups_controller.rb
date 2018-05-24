@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  before_action :set_group, only: [:edit, :delete, :show]
+
   def index
     @groups = Group.all
   end
@@ -11,7 +13,7 @@ class GroupsController < ApplicationController
     @group = Group.new group_params
 
     if @group.save
-      redirect_to :index
+      redirect_to groups_path
     else
       render :new
     end
@@ -27,5 +29,14 @@ class GroupsController < ApplicationController
 
   def delete
     
+  end
+
+private
+  def group_params
+    params.require(:group).permit(:title, :description)
+  end
+
+  def set_group
+    @group = Group.find params[:id]
   end
 end
