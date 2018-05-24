@@ -26,12 +26,19 @@ class GroupsController < ApplicationController
   end
 
   def update
-    @group.update(group_params)
-    redirect_to(groups_path, notice: '更新成功')
+    if @group.update(group_params)
+     redirect_to(groups_path, notice: '更新成功')
+    else
+     redirect_to(groups_path, alert: '更新失敗')
+    end
   end
 
   def destroy
-    redirect_to(groups_path, alert: '刪除成功') if @group.destroy
+    if @group.destroy
+      redirect_to(groups_path, notice: '刪除成功')
+    else
+      redirect_to(groups_path, alert: '刪除失敗')   
+    end
   end
 
   private
