@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :should_have_group, only: [:edit, :update, :destroy, :show]
+  before_action :should_have_group, only: %i[edit update destroy show]
 
   def index
     @groups = Group.all
