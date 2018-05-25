@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
     if @group.save
       redirect_to(groups_path, notice: '新增成功')
     else
-      render :new
+      render(:new)
     end
   end
 
@@ -49,6 +49,7 @@ class GroupsController < ApplicationController
 
   def should_have_group
     @group = Group.find_by(id: params[:id])
+
     head(404) if @group.nil?
   end
 end
