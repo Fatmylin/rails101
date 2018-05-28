@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   before_action :no_current_user, only: %i[edit destroy]
 
   def index
-    @groups = Group.all
+    @groups = Group.includes(:user)
   end
 
   def new
