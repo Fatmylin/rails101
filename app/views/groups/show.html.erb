@@ -1,2 +1,5 @@
-<h1><%= @group.title %></h1>
-<%= simple_format(@group.description) %>
+<div>
+  <h3><%= @group.title %></h1>
+  <h5 class="text-right">提出討論的人: <%= current_user.name %></h5>
+  <%= simple_format(@group.description)%>
+</div>
