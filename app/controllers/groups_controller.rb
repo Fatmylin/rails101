@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :should_have_group, only: %i[edit update destroy show]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     @groups_info = Group.joins(:user).pluck_all(:title, :description, :name, :id)
