@@ -1,7 +1,6 @@
 class GroupsController < ApplicationController
   before_action :should_have_group, only: %i[edit update destroy show]
-  before_action :authenticate_user!, only: %i[new]
-  before_action :no_current_user, only: %i[edit destroy]
+  before_action :authenticate_user!
 
   def index
     @groups_info = Group.joins(:user).pluck_all(:title, :description, :name, :id)
@@ -51,9 +50,5 @@ class GroupsController < ApplicationController
     @group = Group.find_by(id: params[:id])
 
     head(404) if @group.nil?
-  end
-
-  def no_current_user
-    redirect_to(groups_path, alert: '我覺得你應該要先登入比較好') unless current_user
   end
 end
