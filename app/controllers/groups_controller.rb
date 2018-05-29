@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   before_action :no_current_user, only: %i[edit destroy]
 
   def index
-    @groups = Group.includes(:user)
+    @groups_info = Group.joins(:user).pluck_all(:title, :description, :name, :id)
   end
 
   def new
