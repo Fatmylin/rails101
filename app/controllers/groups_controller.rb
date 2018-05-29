@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
   def index
-    @groups_info = Group.joins(:user).deep_pluck(:title, :description, :id, :user => :name)
+    @groups_info = Group.joins(:user).deep_pluck(:title, :description, :id, user: 'name')
   end
 
   def new
