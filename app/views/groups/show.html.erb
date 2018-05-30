@@ -1,5 +1,14 @@
-<div>
-  <h3><%= @group.title %></h3>
-  <h5 class="text-right">提出討論的人: <%= @group.user.name %></h5>
-  <%= simple_format(@group.description)%>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div>
+      <% if current_user %>       
+        <%= link_to('Delete', group_path(@group), class: 'btn btn-danger pull-right', method: :delete, data: { confirm: '確定要刪除嗎？' }) %>
+        <%= link_to('Edit', edit_group_path(@group), class: 'btn btn-success pull-right') %>
+        <%= link_to("Write a Post", new_group_post_path(@group), class: "btn btn-primary pull-right")%>
+      <% end %>
+      <h3><%= @group.title %></h3>
+      <h5>提出討論的人: <%= @group.user.name %></h5>
+      <%= simple_format(@group.description)%>
+    </div>
+  </div>
 </div>
