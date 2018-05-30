@@ -34,6 +34,11 @@ gem 'jbuilder', '~> 2.5'
 # bootstrap-sass
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'simple_form', '~> 4.0.1'
+gem 'devise', '~> 4.0'
+# kamisama no gem
+gem 'deep_pluck', '~> 1.1.0'
+# erb-kint
+gem 'erb_lint', '~> 0.0.26'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

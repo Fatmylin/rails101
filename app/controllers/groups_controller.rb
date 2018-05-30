@@ -1,8 +1,9 @@
 class GroupsController < ApplicationController
   before_action :should_have_group, only: %i[edit update destroy show]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
-    @groups = Group.all
+    @groups_info = Group.deep_pluck(:title, :description, :id, 'user' => 'name')
   end
 
   def new
@@ -10,7 +11,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params)
+    @group = current_user.groups.new(group_params)
 
     if @group.save
       redirect_to(groups_path, notice: '新增成功')
