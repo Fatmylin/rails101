@@ -39,7 +39,6 @@ gem 'devise', '~> 4.0'
 gem 'deep_pluck', '~> 1.1.0'
 # erb-kint
 gem 'erb_lint', '~> 0.0.26'
-# rubo
 gem 'rubocop', '~> 0.51.0'
 # will_paginate
 gem 'will_paginate', '~> 3.1.6'
