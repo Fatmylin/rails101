@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :should_have_group, only: %i[edit update destroy show]
   before_action :authenticate_user!, except: %i[index show]
+  before_action :should_be_owner, only: %i[edit update destroy]
 
   def index
     @groups_info = Group.deep_pluck(:title, :description, :id, 'user' => 'name')
@@ -52,5 +53,11 @@ class GroupsController < ApplicationController
     @group = Group.find_by(id: params[:id])
 
     head(404) if @group.nil?
+  end
+
+  def should_be_owner
+    @group = Group.find_by(id: params[:id])
+
+    redirect_to groups_path unless current_user == @group.user
   end
 end
