@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
+  before_action :should_have_group
+
   def new
-    @group = Group.find_by(params[:group_id])
     @post = Post.new
   end
 
   def create
-    @group = Group.find(params[:group_id])
     @post = @group.posts.new(post_params)
     @post.user = current_user
 
@@ -17,6 +17,12 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def should_have_group
+    @group = Group.find_by(id: params[:group_id])
+
+    head(404) if @group.nil?
+  end
 
   def post_params
     params.require(:post).permit(:context)
