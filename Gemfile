@@ -41,6 +41,8 @@ gem 'deep_pluck', '~> 1.1.0'
 gem 'erb_lint', '~> 0.0.26'
 # rubo
 gem 'rubocop', '~> 0.51.0'
+# will_paginate
+gem 'will_paginate', '~> 3.1.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
