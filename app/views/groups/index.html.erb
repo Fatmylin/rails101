@@ -19,7 +19,7 @@
           <td><%= group['description'] %></td>
           <td><%= group['user']['name'] %></td>
           <td>
-            <% if current_user %>
+            <% if current_user.name == group['user']['name']%>
               <%= link_to('Edit', edit_group_path(group['id']), class: 'btn btn-sm btn-default') %>
               <%= link_to('Delete', group_path(group['id']), class: 'btn btn-sm btn-default', method: :delete, data: { confirm: '確定要刪除嗎？' }) %>
             <% end %>
