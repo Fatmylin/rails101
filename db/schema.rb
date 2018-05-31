@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20180530055941) do
 
   create_table "posts", force: :cascade do |t|
     t.text "context"
-    t.integer "group_id"
-    t.integer "user_id"
+    t.integer "group_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_posts_on_group_id"
