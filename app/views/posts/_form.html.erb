@@ -1,0 +1,7 @@
+<%= simple_form_for [@group, @post] do |f| %>
+  <div class="form-group">
+    <%= f.input(:context, label: '內容:', input_html: { class: 'form-control' }) %>
+  </div>
+  <%= f.submit('確認', class: 'btn btn-primary', data: { disable_with: 'Submitting...' }) %>
+<%= link_to('刪除', group_post_path(@group, @post), class: 'btn btn-danger', method: :delete, data: { confirm: '確定要刪除嗎？' }) if params[:action] == 'edit' %>
+<% end %>
