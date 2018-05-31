@@ -22,7 +22,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @posts = @group.posts.recent.paginate(page: params[:page], per_page: 5)
+    @posts = @group.posts.includes(:user).recent.paginate(page: params[:page], per_page: 5)
   end
 
   def edit; end
