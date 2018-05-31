@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
     @group = current_user.groups.new(group_params)
 
     if @group.save
-      redirect_to(groups_path, notice: '新增成功')
+      redirect_to(group_path(@group), notice: '新增成功')
     else
       render(:new)
     end
@@ -29,9 +29,9 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to(groups_path, notice: '更新成功')
+      redirect_to(group_path(@group), notice: '更新成功')
     else
-      redirect_to(groups_path, alert: '更新失敗')
+      redirect_to(group_path(@group), alert: '更新失敗')
     end
   end
 
