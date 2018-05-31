@@ -17,6 +17,7 @@
           <th>文章内容</th>
           <th>發問者</th>
           <th>發表時間</th>
+          <th>處理文章</th>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +26,7 @@
             <td><%= post.context %></td>
             <td><%= post.user.name %></td>
             <td><%= post.created_at.strftime('%Y-%m-%d %H:%M') %></td>
+            <td><%= link_to('編輯', edit_group_post_path(@group, post)) if current_user == post.user %></td>
           </tr>
         <% end %>
       </tbody>
