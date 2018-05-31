@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :should_have_group
+  before_action :should_have_post, only: %i[edit update destroy]
 
   def new
     @post = Post.new
@@ -16,6 +17,24 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit; end
+
+  def update
+    if @post.update(post_params)
+      redirect_to(group_path(@group), notice: '更新成功')
+    else
+      redirect_to(group_path(@group), notice: '更新失敗')
+    end
+  end
+
+  def destroy
+    if @post.destroy
+      redirect_to(group_path(@group), notice: '刪除成功')
+    else
+      redirect_to(group_path(@group), alert: '刪除失敗')
+    end
+  end
+
   private
 
   def should_have_group
@@ -26,5 +45,11 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:context)
+  end
+
+  def should_have_post
+    @post = Post.find_by(id: params[:id])
+
+    head(404) if @post.nil?
   end
 end
