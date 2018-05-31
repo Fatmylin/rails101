@@ -56,8 +56,6 @@ class GroupsController < ApplicationController
   end
 
   def should_be_owner
-    @group = Group.find_by(id: params[:id])
-
-    redirect_to groups_path unless current_user == @group.user
+    redirect_to groups_path if current_user != @group.user
   end
 end
