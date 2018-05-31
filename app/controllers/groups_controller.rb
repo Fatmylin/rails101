@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   before_action :should_be_owner, only: %i[edit update destroy]
 
   def index
-    @groups_info = Group.deep_pluck(:title, :description, :id, 'user' => 'name')
+    @groups_info = Group.deep_pluck(:title, :description, :id, 'user' => [:name, :id])
   end
 
   def new
