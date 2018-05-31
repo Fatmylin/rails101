@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     @post.user = current_user
 
     if @post.save
-      redirect_to group_path(@group)
+      redirect_to(group_path(@group), notice: '新增成功')
     else
       render :new
     end
@@ -20,19 +20,11 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
-    if @post.update(post_params)
-      redirect_to(group_path(@group), notice: '更新成功')
-    else
-      redirect_to(group_path(@group), notice: '更新失敗')
-    end
+    redirect_to(group_path(@group), notice: @post.update(post_params) ? '更新成功' : '更新失敗')
   end
 
   def destroy
-    if @post.destroy
-      redirect_to(group_path(@group), notice: '刪除成功')
-    else
-      redirect_to(group_path(@group), alert: '刪除失敗')
-    end
+    redirect_to(group_path(@group), notice: @post.destroy ? '刪除成功' : '刪除失敗')
   end
 
   private

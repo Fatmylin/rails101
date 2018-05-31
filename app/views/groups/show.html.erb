@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div>
-      <% if current_user == @group.user %>
+      <% if current_user.id == @group.user.id %>
         <%= link_to('新增文章', new_group_post_path(@group), class: 'btn btn-primary pull-right') %>
         <%= link_to('修改討論內容', edit_group_path(@group), class: 'btn btn-success pull-right') %>
       <% else %>
