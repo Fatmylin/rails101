@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180530055941) do
+ActiveRecord::Schema.define(version: 20180531083844) do
+
+  create_table "group_relationships", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "groups_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["groups_id"], name: "index_group_relationships_on_groups_id"
+    t.index ["user_id"], name: "index_group_relationships_on_user_id"
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string "title", null: false
