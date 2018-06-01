@@ -13,7 +13,7 @@
       <% @posts.each do |post| %>
         <tr>
           <td><%= post.context %></td>
-          <td><%= post.group.title %></td>
+          <td><%= link_to(post.group.title,group_path(post.group)) %></td>
           <td><%= post.created_at.strftime('%Y-%m-%d %H:%M') %></td>
           <td>
             <%= link_to('編輯', edit_account_post_path(post), class: 'btn btn-sm btn-default') %>
