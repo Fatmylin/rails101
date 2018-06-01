@@ -9,7 +9,7 @@ class Account::GroupsController < ApplicationController
   def edit; end
 
   def update
-    redirect_to(group_path(@group), notice: @group.update(group_params) ? '更新成功' : '更新失敗')
+    redirect_to(account_groups_path, notice: @group.update(group_params) ? '更新成功' : '更新失敗')
   end
 
   def destroy
@@ -19,10 +19,12 @@ class Account::GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:grou).permit(:title, :description)
+    params.require(:group).permit(:title, :description)
   end
 
   def should_have_group
     @group = Group.find_by(id: params[:id])
+
+    head(404) if @group.nil?
   end
 end

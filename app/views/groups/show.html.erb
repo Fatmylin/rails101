@@ -9,7 +9,7 @@
       <% elsif current_user && current_user.member_of?(@group) %>
         <label class="label label-success pull-left"> 群组成员 </label>
         <%= link_to('我要下車', quit_group_path(@group), method: :post, class:'btn btn-default pull-left') %>
-        <%= link_to('新增討論', new_group_post_path(@group), class: 'btn btn-primary pull-right') %>
+        <%= link_to('新增討論', new_group_post_path(@group), classs: 'btn btn-primary pull-right') %>
       <% else %>
         <label class="label label-warning pull-left"> 不是群组成员 </label>
         <%= link_to('我要上車', join_group_path(@group), method: :post, class:'btn btn-default pull-left') %>
@@ -19,13 +19,13 @@
       <h5>版主大大: <%= @group.user.name %></h5>
       <%= simple_format(@group.description)%>
     </div>
-    <table class="table">
+    <table class="table  table-hover">
       <thead>
         <tr>
           <th>討論内容</th>
           <th>發問者</th>
           <th>發表時間</th>
-          <th>處理文章</th>
+          <th>文章處理</th>
         </tr>
       </thead>
       <tbody>
