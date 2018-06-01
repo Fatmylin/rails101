@@ -1,12 +1,21 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div>
-      <% if current_user.id == @group.user.id %>
+      <% if current_user && current_user.id == @group.user.id %>
+        <label class="label label-warning pull-left"> 管理員 </label>
         <%= link_to('新增文章', new_group_post_path(@group), class: 'btn btn-primary pull-right') %>
         <%= link_to('修改討論內容', edit_group_path(@group), class: 'btn btn-success pull-right') %>
       <% else %>
         <%= link_to('新增文章', new_group_post_path(@group), class: 'btn btn-primary pull-right') %>     
       <% end %>
+      <span class="pull-left">
+        <% if current_user && current_user.is_member_of?(@group) %>
+          <label class="label label-success"> 群组成员 </label>
+        <% else %>
+          <label class="label label-warning"> 不是群组成员 </label>
+        <% end %>
+      </span>
+      <br>
       <h3><%= @group.title %></h3>
       <h5>提出討論的人: <%= @group.user.name %></h5>
       <%= simple_format(@group.description)%>
