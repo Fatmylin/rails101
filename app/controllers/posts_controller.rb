@@ -33,6 +33,8 @@ class PostsController < ApplicationController
     @group = Group.find_by(id: params[:group_id])
 
     head(404) if @group.nil?
+
+    redirect_to(group_path(@group), alert: '你不是會員喔！') if !current_user.is_member_of?(@group)
   end
 
   def post_params
