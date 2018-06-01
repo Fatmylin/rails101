@@ -42,7 +42,7 @@ gem 'erb_lint', '~> 0.0.26'
 gem 'rubocop', '~> 0.51.0'
 # will_paginate
 gem 'will_paginate', '~> 3.1.6'
-gem 'awesome_print', 'require': 'ap'
+gem 'awesome_print'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -24,5 +24,5 @@ class User < ApplicationRecord
 
   def admin_of?(group)
     id == group.user.id
-  end 
+  end
 end
