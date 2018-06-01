@@ -49,6 +49,6 @@ class PostsController < ApplicationController
   end
 
   def should_be_post_owner
-    redirect_to group_path(@group) if current_user.id != @post.user.id
+    redirect_to group_path(@group) if current_user.id != @post.user_id
   end
 end
