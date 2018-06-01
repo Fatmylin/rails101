@@ -37,12 +37,8 @@ gem 'simple_form', '~> 4.0.1'
 gem 'devise', '~> 4.0'
 # kamisama no gem
 gem 'deep_pluck', '~> 1.1.0'
-# erb-kint
-gem 'erb_lint', '~> 0.0.26'
-gem 'rubocop', '~> 0.51.0'
 # will_paginate
 gem 'will_paginate', '~> 3.1.6'
-gem 'awesome_print'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -59,6 +55,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'awesome_print'
+  # erb-kint
+  gem 'erb_lint', '~> 0.0.26'
+  gem 'rubocop', '~> 0.51.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
