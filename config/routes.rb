@@ -12,5 +12,6 @@ Rails.application.routes.draw do
 
   namespace :account do
     resources :groups, only: %i[index edit destroy update]
+    resources :posts, only: %i[index edit destroy update]
   end
 end
