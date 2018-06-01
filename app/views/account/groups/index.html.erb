@@ -6,20 +6,14 @@
         <th>#</th>
         <th>群組</th>
         <th>群組敘述</th>
-        <th>版主大大</th>
       </tr>
     </thead>
     <tbody>
-      <% @groups.each do |group| %>
+      <% @groups_info.each do |info| %>
         <tr>
           <td>#</td>
-          <td><%= link_to(group.title, group_path(group)) %></td>
-          <td><%= group.description %></td>
-          <td><%= group.user.name %></td>
-          <td>
-            <%= link_to('編輯', edit_account_group_path(group), class: 'btn btn-sm btn-default') %>
-            <%= link_to('刪除', account_group_path(group), class: 'btn btn-sm btn-default', method: :delete, data: { confirm: '確定要刪除嗎？' }) %>
-          </td>
+          <td><%= link_to(info.group.title, group_path(info.group)) %></td>
+          <td><%= info.group.description %></td>
         </tr>
       <% end %>
     </tbody>
