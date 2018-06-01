@@ -9,7 +9,7 @@
         <%= link_to('新增文章', new_group_post_path(@group), class: 'btn btn-primary pull-right') %>     
       <% end %>
       <span class="pull-left">
-        <% if current_user && current_user.is_member_of?(@group) %>
+        <% if current_user && current_user.member_of?(@group) %>
           <label class="label label-success"> 群组成员 </label>
         <% else %>
           <label class="label label-warning"> 不是群组成员 </label>
