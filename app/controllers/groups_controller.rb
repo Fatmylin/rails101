@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
     @group = current_user.groups.new(group_params)
 
     if @group.save
+      current_user.join!(@group)
       redirect_to(group_path(@group), notice: '新增成功')
     else
       render(:new)
@@ -78,6 +79,6 @@ class GroupsController < ApplicationController
   end
 
   def should_be_group_owner
-    redirect_to groups_path if current_user.id != @group.user.id
+    redirect_to(groups_path, alert: '放肆！！') if !current_user.admin_of?(@group)
   end
 end

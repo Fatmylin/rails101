@@ -1,22 +1,19 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div>
-      <% if current_user && current_user.id == @group.user.id %>
+      <% if current_user && current_user.admin_of?(@group) %>
         <label class="label label-warning pull-left"> 管理員 </label>
-        <%= link_to('新增討論', new_group_post_path(@group), class: 'btn btn-primary pull-right') %>
         <%= link_to('修改討論內容', edit_group_path(@group), class: 'btn btn-success pull-right') %>
+        <%= link_to('新增討論', new_group_post_path(@group), class: 'btn btn-primary pull-right') %>
+        <%= link_to('刪除', group_path(@group), class: 'btn btn-danger pull-right', method: :delete, data: { confirm: '確定要刪除嗎？' }) %>
+      <% elsif current_user && current_user.member_of?(@group) %>
+        <label class="label label-success pull-left"> 群组成员 </label>
+        <%= link_to('我要下車', quit_group_path(@group), method: :post, class:'btn btn-default pull-left') %>
+        <%= link_to('新增討論', new_group_post_path(@group), class: 'btn btn-primary pull-right') %>
       <% else %>
-        <%= link_to('新增討論', new_group_post_path(@group), class: 'btn btn-primary pull-right') %>     
+        <label class="label label-warning pull-left"> 不是群组成员 </label>
+        <%= link_to('我要上車', join_group_path(@group), method: :post, class:'btn btn-default pull-left') %>
       <% end %>
-      <span class="pull-left">
-        <% if current_user && current_user.member_of?(@group) %>
-          <label class="label label-success"> 群组成员 </label>
-          <%= link_to('我要下車', quit_group_path(@group), method: :post, class:'btn btn-default pill-right') %>
-        <% else %>
-          <label class="label label-warning"> 不是群组成员 </label>
-          <%= link_to('我要上車', join_group_path(@group), method: :post, class:'btn btn-default pill-right') %>
-        <% end %>
-      </span>
       <br>
       <h3><%= @group.title %></h3>
       <h5>版主大大: <%= @group.user.name %></h5>
