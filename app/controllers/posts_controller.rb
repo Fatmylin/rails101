@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :should_have_group
   before_action :should_have_post, only: %i[edit update destroy]
+  before_action :should_be_post_owner, only: %i[edit update destroy]
 
   def new
     @post = Post.new
@@ -33,6 +34,8 @@ class PostsController < ApplicationController
     @group = Group.find_by(id: params[:group_id])
 
     head(404) if @group.nil?
+
+    redirect_to(group_path(@group), alert: '你不是會員喔！') if !current_user.member_of?(@group)
   end
 
   def post_params
@@ -43,5 +46,9 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
 
     head(404) if @post.nil?
+  end
+
+  def should_be_post_owner
+    redirect_to group_path(@group) if current_user.id != @post.user_id
   end
 end

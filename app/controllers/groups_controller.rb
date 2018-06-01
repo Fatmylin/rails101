@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
-  before_action :should_have_group, only: %i[edit update destroy show]
+  before_action :should_have_group, only: %i[edit update destroy show join quit]
   before_action :authenticate_user!, except: %i[index show]
-  before_action :should_be_owner, only: %i[edit update destroy]
+  before_action :should_be_group_owner, only: %i[edit update destroy]
 
   def index
     @groups_info = Group.deep_pluck(:title, :description, :id, 'user' => [:name, :id])
@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
     @group = current_user.groups.new(group_params)
 
     if @group.save
+      current_user.join!(@group)
       redirect_to(group_path(@group), notice: '新增成功')
     else
       render(:new)
@@ -43,6 +44,28 @@ class GroupsController < ApplicationController
     end
   end
 
+  def join
+    if !current_user.member_of?(@group)
+      current_user.join!(@group)
+      flash[:notice] = '歡迎上車！坐穩啦～'
+    else
+      flash[:warning] = '你已經是群組成員！'
+    end
+
+    redirect_to(group_path(@group))
+  end
+
+  def quit
+    if current_user.member_of?(@group)
+      current_user.quit!(@group)
+      flash[:alert] = '你達達的馬蹄聲是我美麗的錯誤～再見我的過客'
+    else
+      flash[:warning] = '你 484 很討厭我們？'
+    end
+
+    redirect_to(group_path(@group))
+  end
+
   private
 
   def group_params
@@ -55,7 +78,7 @@ class GroupsController < ApplicationController
     head(404) if @group.nil?
   end
 
-  def should_be_owner
-    redirect_to groups_path if current_user != @group.user
+  def should_be_group_owner
+    redirect_to(groups_path, alert: '放肆！！') if !current_user.admin_of?(@group)
   end
 end
