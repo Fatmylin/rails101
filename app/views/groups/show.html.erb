@@ -8,11 +8,11 @@
         <%= link_to('刪除', group_path(@group), class: 'btn btn-danger pull-right', method: :delete, data: { confirm: '確定要刪除嗎？' }) %>
       <% elsif current_user && current_user.member_of?(@group) %>
         <label class="label label-success pull-left"> 群组成员 </label>
-        <%= link_to('我要下車', quit_group_path(@group), method: :post, class:'btn btn-default pull-left') %>
+        <%= link_to('我要下車', quit_group_path(@group), method: :post, class:'btn btn-default pull-right') %>
         <%= link_to('新增討論', new_group_post_path(@group), class: 'btn btn-primary pull-right') %>
       <% else %>
         <label class="label label-warning pull-left"> 不是群组成员 </label>
-        <%= link_to('我要上車', join_group_path(@group), method: :post, class:'btn btn-default pull-left') %>
+        <%= link_to('我要上車', join_group_path(@group), method: :post, class:'btn btn-default pull-right') %>
       <% end %>
       <br>
       <h3><%= @group.title %></h3>
