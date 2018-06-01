@@ -43,6 +43,28 @@ class GroupsController < ApplicationController
     end
   end
 
+  def join
+    if !current_user.member_of?(@group)
+      current_user.join!(@group)
+      flash[:notice] = '歡迎上車！坐穩啦～'
+    else
+      flash[:warning] = '你已經是群組成員！'
+    end
+
+    redirect_to(group_path(@group))
+  end
+
+  def quit
+    if current_user.member_of?(@group)
+      current_user.quit!(@group)
+      flash[:alert] = '你達達的馬蹄聲是我美麗的錯誤～再見我的過客'
+    else
+      flash[:warning] = '你 484 很討厭我們？'
+    end
+
+    redirect_to(group_path(@group))
+  end
+
   private
 
   def group_params
