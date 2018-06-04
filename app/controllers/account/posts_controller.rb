@@ -3,7 +3,7 @@ class Account::PostsController < ApplicationController
   before_action :should_have_post, except: %i[index]
 
   def index
-    @posts = Post.includes(:user, :group).where('user_id = ?', current_user.id)
+    @posts = Post.includes(:user, :group).where(user_id: current_user.id)
   end
 
   def edit; end
