@@ -6,14 +6,22 @@
         <th>#</th>
         <th>群組</th>
         <th>群組敘述</th>
+        <th>權限</th>
       </tr>
     </thead>
     <tbody>
-      <% @groups_info.each do |info| %>
+      <% @groups.each do |group| %>
         <tr>
           <td>#</td>
-          <td><%= link_to(info.group.title, group_path(info.group)) %></td>
-          <td><%= info.group.description %></td>
+          <td><%= link_to(group.title, group_path(group)) %></td>
+          <td><%= group.description %></td>
+          <td>
+            <% if group.user_id == current_user.id %>
+              管理員
+            <% else %>
+              一般組員
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

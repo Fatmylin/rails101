@@ -1,9 +1,9 @@
 class Account::PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :should_have_post, except: %i[index]
+  before_action :should_have_post, only: %i[deit update destroy]
 
   def index
-    @posts = Post.includes(:user, :group).where(user_id: current_user.id)
+    @posts = current_user.posts.includes(:group)
   end
 
   def edit; end
