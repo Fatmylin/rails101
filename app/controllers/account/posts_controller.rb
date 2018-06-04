@@ -1,6 +1,6 @@
 class Account::PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :should_have_post, only: %i[deit update destroy]
+  before_action :should_have_post, only: %i[edit update destroy]
 
   def index
     @posts = current_user.posts.includes(:group)
@@ -9,11 +9,19 @@ class Account::PostsController < ApplicationController
   def edit; end
 
   def update
-    redirect_to(account_posts_path, notice: @post.update(post_params) ? '更新成功' : '更新失敗')
+    if @post.update(post_params)
+      redirect_to(account_posts_path, notice: '更新成功')
+    else
+      render :edit
+    end
   end
 
   def destroy
-    redirect_to(account_posts_path, notice: @post.destroy ? '刪除成功' : '刪除失敗')
+    if @post.destroy
+      redirect_to(account_posts_path, notice: '刪除成功')
+    else
+      redirect_to(account_posts_path, notice: '刪除失敗')
+    end
   end
 
   private
