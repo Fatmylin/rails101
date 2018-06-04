@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :should_have_group, only: %i[edit update destroy show join quit]
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, only: %i[new create edit update destroy join quit]
   before_action :should_be_group_owner, only: %i[edit update destroy]
 
   def index
