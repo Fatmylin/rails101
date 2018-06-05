@@ -1,0 +1,25 @@
+<div class="col-md-12">
+  <h2 class="text-center">我的文章</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>討論内容</th>
+        <th>發問群組</th>
+        <th>發表時間</th>
+        <th>文章處理</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.context %></td>
+          <td><%= link_to(post.group.title, group_path(post.group)) %></td>
+          <td><%= post.created_at.strftime('%Y-%m-%d %H:%M') %></td>
+          <td>
+            <%= link_to('編輯', edit_account_post_path(post), class: 'btn btn-sm btn-default') %>
+            <%= link_to('刪除', account_post_path(post), class: 'btn btn-sm btn-default', method: :delete, data: { confirm: '確定要刪除嗎？' }) %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>  
+</div>

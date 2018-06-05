@@ -1,0 +1,25 @@
+<div class="col-md-12">
+  <h2 class="text-center">我的群組</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>群組</th>
+        <th>群組敘述</th>
+        <th>權限</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @groups.each do |group| %>
+        <tr>
+          <td>#</td>
+          <td><%= link_to(group.title, group_path(group)) %></td>
+          <td><%= group.description %></td>
+          <td>
+            <%= group.user_id == current_user.id ? '管理員' : '一般組員'%>
+          </td>
+        </tr>
+      <% end %> 
+    </tbody>
+  </table>
+</div>

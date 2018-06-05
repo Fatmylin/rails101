@@ -9,4 +9,9 @@ Rails.application.routes.draw do
     end
     resources :posts, only: %i[new create update edit destroy]
   end
+
+  namespace :account do
+    resources :groups, only: %i[index]
+    resources :posts, only: %i[index edit destroy update]
+  end
 end
