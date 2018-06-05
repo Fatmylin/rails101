@@ -11,21 +11,6 @@
         <th>版主大大</th>
       </tr>
     </thead>
-    <tbody>
-      <% @groups_info.each do |group| %>
-        <tr>
-          <td>#</td>
-          <td><%= link_to(group['title'], group_path(group['id'])) %></td>
-          <td><%= group['description'] %></td>
-          <td><%= group['user']['name'] %></td>
-          <td>
-            <% if current_user && current_user.id == group['user']['id']%>
-              <%= link_to('編輯', edit_group_path(group['id']), class: 'btn btn-sm btn-default') %>
-              <%= link_to('刪除', group_path(group['id']), class: 'btn btn-sm btn-default', method: :delete, data: { confirm: '確定要刪除嗎？' }) %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
+    <%= render 'info' %>
   </table>
 </div>
