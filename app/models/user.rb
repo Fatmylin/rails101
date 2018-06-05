@@ -15,19 +15,11 @@ class User < ApplicationRecord
   end
 
   def join!(group)
-    if self.member_of?(group)
-      false
-    else
-      participated_groups << group
-    end
+    participated_groups << group if !member_of?(group)
   end
 
   def quit!(group)
-    if self.member_of?(group)
-      participated_groups.delete(group)
-    else
-      false
-    end
+    participated_groups.delete(group) if member_of?(group)
   end
 
   def admin_of?(group)
