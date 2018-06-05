@@ -14,7 +14,7 @@
         <tr>
           <td>#</td>
           <td><%= link_to(group.title, group_path(group)) %></td>
-          <td><%= group.description %></td>
+          <td class= 'text-danger' ><%= group.description %></td>
           <td>
             <%= group.user_id == current_user.id ? '管理員' : '一般組員'%>
           </td>
