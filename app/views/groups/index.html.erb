@@ -11,6 +11,8 @@
         <th>版主大大</th>
       </tr>
     </thead>
-    <%= render 'info' %>
+    <tbody>
+      <%= render partial: 'info', collection: @groups_info, as: :group %>
+    </tbody>
   </table>
 </div>
